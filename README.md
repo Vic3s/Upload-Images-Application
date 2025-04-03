@@ -1,1 +1,1 @@
-# Upload-Images-Application
+An application for uploading images and saving other users uploaded images inside seperate albums, that can be created by the users. An authenticating system(using Json Web Tokens) with Passport JS, User information is saved inside a MongoDB database, with passwords being encrypted with the javascrypt library bcrypt.
