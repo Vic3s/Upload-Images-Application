@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous"></script>
+
+    <title>Details Album</title>
+</head>
+<body>
+
+
+    <%- include("./partials/nav.ejs")  %>
+
+    <main class="main-content-album">
+
+        <div class="go-back">
+            <a href="/"><img src="back-arrow.svg" alt="go back"></a>
+        </div>
+
+        <div id="album-profile">
+            <img src="account_pic_1.svg" alt="Profile-Picture">
+            <div class="text-album-profile">
+                <h2>
+
+                    <% if(album_obj) { %>
+
+                        <h3>
+                            <%= album_obj.title %>
+                        </h3>
+                    <% } %>
+
+                </h2>
+                <div class="information-container">
+                    <h3 id="name-post">: VaskoDaGama</h3>
+                    <h3 id="place-post"><li>Bosnia</li></h3>
+                    <h3 id="message-quote-post"> - At the end of the day, it's just code.</h3>
+                    <h3 id="date-post">17/08/2024</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="description-album">
+
+            <% if(album_obj) { %>
+
+                <h3>
+                    <%= album_obj.description %>
+                </h3>
+            <% } %>
+
+        </div>
+        
+            <div class="section-columns">
+
+                <section class="coulmn1 column">
+                    <% if(album_obj.photos.length > 0) { %>
+
+                        <% if(album_obj.photos.length <= 4) { %>
+
+                            <div class="post1-1 post">
+                                <img class="image1-1 image" src="<%= photos_obj[0].file_path %>" alt="photo">
+                                <div class="post-text">
+                                    <h3 class="heading-post"><%= photos_obj[0].title %></h3>
+                                </div>
+                        <% } else { %>
+
+                            <% for(let i=0; i<album_obj.photos.length; i+=4){ %>
+
+                                <% console.log(photos_obj[i]) %>
+
+                                <div class="post1-1 post">
+                                    <img class="image1-1 image" src="<%=photos_obj[i].file_path%>" alt="photo">
+                                    <div class="post-text">
+                                        <h3 class="heading-post"><%= photos_obj[i].title %></h3>
+                                    </div>
+                                </div>
+
+                            <% } %>
+
+                        <% } %>
+
+                    <% } %>
+                </section>
+                <section class="coulmn2 column">
+
+                    <% if(album_obj.photos.length > 1) { %>
+
+                        <% if(album_obj.photos.length <= 5) { %>
+
+                            <div class="post1-1 post">
+                                <img class="image1-1 image" src="<%= photos_obj[1].file_path %>" alt="photo">
+                                <div class="post-text">
+                                    <h3 class="heading-post"><%= photos_obj[1].title %></h3>
+                                </div>
+                            </div>
+                        <% } else { %>
+
+                            <% for(let i=1; i<album_obj.photos.length; i+=4){ %>
+
+                                <% console.log(photos_obj[i]) %>
+
+                                <div class="post1-1 post">
+                                    <img class="image1-1 image" src="<%= photos_obj[i].file_path %>" alt="photo">
+                                    <div class="post-text">
+                                        <h3 class="heading-post"><%= photos_obj[i].title %></h3>
+                                    </div>
+                                </div>
+                            <% } %>
+
+                        <% } %>
+
+                    <% } %>
+        
+                </section>
+                <section class="coulmn3 column">
+
+                    <% if(album_obj.photos.length > 2) { %>
+
+                        <% if(album_obj.photos.length <= 6) { %>
+
+                            <div class="post1-1 post">
+                                <img class="image1-1 image" src="<%= photos_obj[2].file_path %>" alt="photo">
+                                <div class="post-text">
+                                    <h3 class="heading-post"><%= photos_obj[2].title %></h3>
+                                </div>
+                            </div>
+                        <% } else { %>
+
+                            <% for(let i=2; i<album_obj.photos.length; i+=4){ %>
+
+                                <% console.log(photos_obj[i]) %>
+
+                                <div class="post1-1 post">
+                                    <img class="image1-1 image" src="<%= photos_obj[i].file_path %>" alt="photo">
+                                    <div class="post-text">
+                                        <h3 class="heading-post"><%= photos_obj[i].title %></h3>
+                                    </div>
+                                </div>
+                            <% } %>
+
+                        <% } %>
+
+                    <% } %>
+        
+                </section>
+                <section class="coulmn4 column">
+
+                    <% if(album_obj.photos.length > 3) { %>
+
+                        <% if(album_obj.photos.length <= 7) { %>
+
+                            <div class="post1-1 post">
+                                <img class="image1-1 image" src="<%= photos_obj[3].file_path %>" alt="photo">
+                                <div class="post-text">
+                                    <h3 class="heading-post"><%= photos_obj[3].title %></h3>
+                                </div>
+                            </div>
+                        <% } else { %>
+
+                            <% for(let i=3; i<album_obj.photos.length; i+=4){ %>
+
+                                <% console.log(photos_obj[i]) %>
+
+                                <div class="post1-1 post">
+                                    <img class="image1-1 image" src="<%= photos_obj[i].file_path %>" alt="photo">
+                                    <div class="post-text">
+                                        <h3 class="heading-post"><%= photos_obj[i].title %></h3>
+                                    </div>
+                                </div>
+                            <% } %>
+
+                        <% } %>
+
+                    <% } %>
+                </section> 
+
+            </div>
+
+        </main>
+</body>
+</html>

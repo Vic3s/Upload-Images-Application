@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous"></script>
+    <script src="/static_/js_frontend/check_checkbox_effect.js"></script>
+
+    <title>Alb - Create-Memory</title>
+</head>
+<body>
+
+    <%- include("./partials/nav.ejs")  %>
+
+    <main id="create-main-content">
+        <h1>Create a Memory</h1>
+        <div class="container-form">
+            <div class="album-choice">
+                    
+                <div class="button-create-album-container">
+                    <button id="btn-create-album">Create <br>New Album</button>
+                </div>
+                <div class="albums-modal">
+                    <div class="bar-albums-modal">
+                        <div class="items-bar-modal">
+                            <h1>Create Album</h1>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                    </div>
+                    <div class="albums-modal-body">
+                        <form action="/create-post" method="post" enctype="multipart/form-data">
+
+                            <div class="album-picture">
+                                <div class="container-album-card">
+                                    <div class="album1-1 album">
+                                        <div class="cover-lines">
+                                            <label for="album_cover" id="upload-label">
+                                                Pick a file or <br> drag and drop 
+                                                <img src="upload-file-svgrepo-com.svg" alt="upload file icon">
+                                            </label>
+                                            <input type="file" class="image1-1 image" id="album_cover" name="album_cover" accept="*/" hidden>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="album-type">
+                                    <fieldset>
+                                        <div>
+                                            <input type="radio" value="Private" name="album_type_radio" id="private-radio"/>
+                                            <label for="private-radio" checked>Private</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" value="Public" name="album_type_radio" id="public-radio"/>
+                                            <label for="public-radio">Public</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div> 
+                            <div class="album-create-text">
+                                <div>
+                                    <label for="album_name">Album Title</label>
+                                    <input type="text" name="album_name" id="album-name" placeholder="My Album#1..." required>
+                                </div>
+
+                                <div>
+                                    <label for="album_description">Description</label>
+                                    <textarea type="text" name="album_description" 
+                                    id="album-description" cols="40" rows="10" placeholder="My vacation in Miami..."></textarea>
+                                </div>
+
+                                <div>
+                                    <label for="album_quote">Quote</label>
+                                    <input type="text" name="album_quote" id="album-quote" placeholder="It was awesome...">
+                                </div>
+                                
+                                <button type="submit">Create</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <form action="/create-post" method="post" enctype="multipart/form-data">
+
+                <div class="upload-container">
+
+                    <label for="photo_upload_file" id="upload-label">
+                        Pick a file or <br> drag and drop 
+                        <img src="upload-file-svgrepo-com.svg" alt="upload file icon">
+                    </label>
+                    <input type="file" name="photo_upload_file" id="photo_upload_file" hidden>                  
+                </div>
+
+                <div class="info-upload">
+
+                    <div>
+                        <label for="title_photo">Title</label>
+                        <input type="text" name="title_photo" id="heading" placeholder="Add A Title...">
+                    </div>
+                    
+                    <div>
+                        <label for="description_photo">Description</label>
+                        <textarea 
+                            type="text" 
+                            name="description_photo" 
+                            id="description-upload" 
+                            placeholder="Add A Description..."
+                            rows="7"></textarea>
+                    </div>
+                    <div>
+                        <label for="tags_photo">Tags</label>
+                        <input type="text" name="tags_photo" id="tags-upload" placeholder="Add Tags...">
+                    </div>
+                    
+                    <button id="button-submit-post" type="submit">Create memmory</button>
+
+                </div>
+
+                <div id="album-choice-container">
+                    <div id="heading-album-choice">
+                        <h3>Where should<br> this go?</h3>
+                    </div>
+                    <div id="container-list">
+                        <ul id="list-album-choice" class="">
+                            <h2>Albums</h2>
+
+                            <% for(let i=0; i < albums_list.length; i++) {%>
+
+                                <label for="<%= albums_list[i].title %>"><li class="album-li"><img src="<%= albums_list[i].cover_img %>" alt="album picture list creste choice">
+                                    <p><%= albums_list[i].title %></p>
+                                </li></label>
+                                <input type="checkbox" class="checkbox_album_choice" name="<%= albums_list[i].title %>" id="<%= albums_list[i].title %>" >
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+                
+            </form>
+
+        </div>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous"></script>
+    <script src="check_checkbox_effect.js"></script>
+    <script src="modal-albums.js"></script>
+    <script src="check_checked_checkbox.js"></script>
+    
+</body>
+</html>

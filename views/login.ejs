@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Alb - Sign Up</title>
+</head>
+<body>
+
+    <%- include("./partials/nav_not_loged.ejs")  %>
+
+    <main id="login-main-content">
+        <div class="container-form">
+            <h1>Log In</h1>
+
+            <% if (messages.error) {%>
+                <%= messages.error %>
+            <%}%>
+
+            <form action="/login" method="post">
+                <div id="form-sides">
+
+                    <div class="form-side-one">
+                        <div>
+                            <label for="email">Email </label>
+                            <input type="email" name="email" id="email" placeholder="email...">
+                        </div>
+        
+                        <div>
+                            <label for="password">Password </label>
+                            <input type="password" name="password" id="password" placeholder="pass...">
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <hr style="color: rgb(180, 180, 180); height: 0px; width: 350px;">
+                
+                <div class="submit-button-container">
+                    <button type="submit" id="submit-button-signup">Log In!</button>
+                </div>
+            </form>
+            <div class="container-login-redirect">
+                <h3>Don't have an account?</h3>
+                <a href="/signup">Sign Up!</a>
+            </div>
+            
+        </div>
+    </main>
+    
+</body>
+</html>

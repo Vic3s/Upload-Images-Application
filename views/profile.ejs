@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous"></script>
+
+    <title>Alb - <%=pf_name%></title>
+</head>
+<body>
+
+    <%- include("./partials/nav.ejs") %>
+
+    <main id="profile-main-content">
+
+        <div class="profile-info-container">
+
+            <img src="account_pic_1.svg" alt="Profile Image" id="profile-image">
+            <div class="profile-info-text">
+                <h1><%= pf_name %></h1>
+                <h3><%= pf_email %></h3>
+
+                <button class="friends-menu-button">Friends</button>
+
+                <div class="friends-modal" id="modal">
+                    <div class="header-modal">
+                        <h2>Friends List</h2>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="friends-list">
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                        <div>Friend</div>
+                    </div>
+                </div>
+
+                <form action="/logout?_method=DELETE" method="post">
+                    <button class="log-out-btn" type="submit">Log Out</button>
+                </form>
+
+                <div class="bio-info">
+                    <h2><b>Bio</b><br></h2> 
+                    <h3><%= pf_bio %></h3>
+                </div>
+            </div>
+            <div id="saved-albums-section">
+
+                <h1>Saved Albums</h1>
+                
+                <div class="section-columns-albums">
+
+                    <section class="coulmn1 column">
+                        <% if(saved_alb.length > 0) { %>
+
+                            <% if(saved_alb.length <= 4) { %>
+
+                                <div class="container-album-card">
+                                    <!-- <a href="/details"> -->
+                                        <div class="album1-1 album">
+                                            <div class="cover-lines">
+                                                <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                            </div>
+                                        </div>
+                                    <!-- </a> -->
+                                    <div class="album-text">
+                                        <h3 class="heading-post"><%= saved_alb[0].title %></h3>
+                                        <div class="album-info">
+                                            <h4>34 pics</h4>
+                                            <h4>17/08/2024</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <% } else { %>
+
+                                <% for(let i=0; i<saved_alb.length; i+=4){ %>
+
+                                    <div class="container-album-card">
+                                        <!-- <a href="/details"> -->
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        <!-- </a> -->
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= saved_alb[i].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } %>
+
+                            <% } %>
+
+                        <% } %>
+                        
+                    </section>
+                    <section class="coulmn1 column">
+
+                        <% if(saved_alb.length >= 2) { %>
+
+                            <% if(saved_alb.length <= 5) { %>
+
+                                <div class="container-album-card">
+                                    <!-- <a href="/details"> -->
+                                        <div class="album1-1 album">
+                                            <div class="cover-lines">
+                                                <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                            </div>
+                                        </div>
+                                    <!-- </a> -->
+                                    <div class="album-text">
+                                        <h3 class="heading-post"><%= saved_alb[1].title %></h3>
+                                        <div class="album-info">
+                                            <h4>34 pics</h4>
+                                            <h4>17/08/2024</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <% } else { %>
+
+                                <% for(let i=1; i<saved_alb.length; i+=4){ %>
+
+                                    <div class="container-album-card">
+                                        <!-- <a href="/details"> -->
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        <!-- </a> -->
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= saved_alb[i].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } %>
+
+                            <% } %>
+
+                        <% } %>
+                        
+                    </section>
+                    <section class="coulmn1 column">
+
+                        <% if(saved_alb.length >= 3) { %>
+
+                            <% if(saved_alb.length <= 6) { %>
+
+                                <div class="container-album-card">
+                                    <a href="/details">
+                                        <div class="album1-1 album">
+                                            <div class="cover-lines">
+                                                <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="album-text">
+                                        <h3 class="heading-post"><%= saved_alb[2].title %></h3>
+                                        <div class="album-info">
+                                            <h4>34 pics</h4>
+                                            <h4>17/08/2024</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <% } else { %>
+
+                                <% for(let i=2; i<saved_alb.length; i+=4){ %>
+
+                                    <div class="container-album-card">
+                                        <a href="/details">
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= saved_alb[i].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } %>
+
+                            <% } %>
+
+                        <% } %>
+                        
+                    </section>
+                    <section class="coulmn1 column">
+
+                        <% if(saved_alb.length > 4) { %>
+
+                            <% if(saved_alb.length <= 7) { %>
+
+                                <div class="container-album-card">
+                                    <a href="/details">
+                                        <div class="album1-1 album">
+                                            <div class="cover-lines">
+                                                <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="album-text">
+                                        <h3 class="heading-post"><%= saved_alb[3].title %></h3>
+                                        <div class="album-info">
+                                            <h4>34 pics</h4>
+                                            <h4>17/08/2024</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <% } else { %>
+
+                                <% for(let i=3; i<saved_alb.length; i+=4){ %>
+
+                                    <div class="container-album-card">
+                                        <a href="/details">
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= saved_alb[i].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } %>
+
+                            <% } %>
+
+                        <% } %>
+                        
+                    </section>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="albums-profile">
+            <h2><button class="private-albums">Private</button> | <button class="public-albums">Public</button></h2>
+        </div>
+
+        <section id="private-public-sections" class="private-sec">
+
+            <div id="slider-sections">
+
+                <div id="private-albums-section">
+
+                    <div class="section-columns-albums-private">
+
+                        <section class="coulmn1 column">
+
+                            <% if(private_alb.length > 0) { %>
+
+                                <% if(private_alb.length <= 4) { %>
+
+                                    <div class="container-album-card" id="<%= private_alb[0]._id %>">
+                                        <!-- <a href="/details"> -->
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        <!-- </a> -->
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= private_alb[0].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } else { %>
+
+                                    <% for(let i=0; i<private_alb.length; i+=4){ %>
+
+                                        <div class="container-album-card">
+                                            <!-- <a href="/details"> -->
+                                                <div class="album1-1 album">
+                                                    <div class="cover-lines">
+                                                        <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                    </div>
+                                                </div>
+                                            <!-- </a> -->
+                                            <div class="album-text">
+                                                <h3 class="heading-post"><%= private_alb[i].title %></h3>
+                                                <div class="album-info">
+                                                    <h4>34 pics</h4>
+                                                    <h4>17/08/2024</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } %>
+
+                                <% } %>
+
+                            <% } %>
+
+                            
+                        </section>
+                        <section class="coulmn2 column">
+
+                            <% if(private_alb.length >= 2) { %>
+
+                                <% if(private_alb.length <= 5) { %>
+
+                                    <div class="container-album-card">
+                                        <!-- <a href="/details"> -->
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        <!-- </a> -->
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= private_alb[1].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } else { %>
+
+                                    <% for(let i=1; i<private_alb.length; i+=4){ %>
+
+                                        <div class="container-album-card">
+                                            <!-- <a href="/details"> -->
+                                                <div class="album1-1 album">
+                                                    <div class="cover-lines">
+                                                        <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                    </div>
+                                                </div>
+                                            <!-- </a> -->
+                                            <div class="album-text">
+                                                <h3 class="heading-post"><%= private_alb[i].title %></h3>
+                                                <div class="album-info">
+                                                    <h4>34 pics</h4>
+                                                    <h4>17/08/2024</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } %>
+
+                                <% } %>
+
+                            <% } %>
+                            
+                        </section>
+                        <section class="coulmn3 column">
+
+                            <% if(private_alb.length >= 3) { %>
+
+                                <% if(private_alb.length <= 6) { %>
+
+                                    <div class="container-album-card">
+                                        <a href="/details">
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= private_alb[2].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } else { %>
+
+                                    <% for(let i=2; i<private_alb.length; i+=4){ %>
+
+                                        <div class="container-album-card">
+                                            <a href="/details">
+                                                <div class="album1-1 album">
+                                                    <div class="cover-lines">
+                                                        <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="album-text">
+                                                <h3 class="heading-post"><%= private_alb[i].title %></h3>
+                                                <div class="album-info">
+                                                    <h4>34 pics</h4>
+                                                    <h4>17/08/2024</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } %>
+
+                                <% } %>
+
+                            <% } %>
+                            
+                        </section>
+                        <section class="coulmn4 column">
+
+                            <% if(private_alb.length >= 4) { %>
+
+                                <% if(private_alb.length <= 7) { %>
+
+                                    <div class="container-album-card">
+                                        <a href="/details">
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= private_alb[3].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } else { %>
+
+                                    <% for(let i=3; i<private_alb.length; i+=4){ %>
+
+                                        <div class="container-album-card">
+                                            <a href="/details">
+                                                <div class="album1-1 album">
+                                                    <div class="cover-lines">
+                                                        <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="album-text">
+                                                <h3 class="heading-post"><%= private_alb[i].title %></h3>
+                                                <div class="album-info">
+                                                    <h4>34 pics</h4>
+                                                    <h4>17/08/2024</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } %>
+
+                                <% } %>
+
+                            <% } %>
+                            
+                        </section>
+
+                    </div>
+
+                </div>
+                <div id="public-albums-section">
+
+                    <div class="section-columns-albums-public">
+
+                        <section class="coulmn1 column">
+                            <% if(public_alb.length > 0) { %>
+
+                                <% if(public_alb.length <= 4) { %>
+
+                                    <div class="container-album-card" id="<%= public_alb[0]._id %>">
+                                        <a href="/details">
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= public_alb[0].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } else { %>
+
+                                    <% for(let i=0; i<public_alb.length; i+=4){ %>
+
+                                        <div class="container-album-card" id="<%= private_alb[i]._id %>">
+                                            <a href="/details">
+                                                <div class="album1-1 album">
+                                                    <div class="cover-lines">
+                                                        <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="album-text">
+                                                <h3 class="heading-post"><%= public_alb[i].title %></h3>
+                                                <div class="album-info">
+                                                    <h4>34 pics</h4>
+                                                    <h4>17/08/2024</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } %>
+
+                                <% } %>
+
+                            <% } %>
+
+                        </section>
+                        <section class="coulmn2 column">
+
+                            <% if(public_alb.length >= 2) { %>
+
+                                <% if(public_alb.length <= 5) { %>
+
+                                    <div class="container-album-card" id="<%= public_alb[1]._id %>">
+                                        <a href="/details">
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= public_alb[1].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } else { %>
+
+                                    <% for(let i=1; i<public_alb.length; i+=4){ %>
+
+                                        <div class="container-album-card" id="<%= public_alb[i]._id %>">
+                                            <a href="/details">
+                                                <div class="album1-1 album">
+                                                    <div class="cover-lines">
+                                                        <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="album-text">
+                                                <h3 class="heading-post"><%= public_alb[i].title %></h3>
+                                                <div class="album-info">
+                                                    <h4>34 pics</h4>
+                                                    <h4>17/08/2024</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } %>
+
+                                <% } %>
+
+                            <% } %>
+                            
+                        </section>
+                        <section class="coulmn3 column">
+
+                            <% if(public_alb.length >= 3) { %>
+
+                                <% if(public_alb.length <= 6) { %>
+
+                                    <div class="container-album-card" id="<%= public_alb[2]._id %>">
+                                        <a href="/details">
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= public_alb[2].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } else { %>
+
+                                    <% for(let i=2; i<public_alb.length; i+=4){ %>
+
+                                        <div class="container-album-card" id="<%= public_alb[i]._id %>">
+                                            <a href="/details">
+                                                <div class="album1-1 album">
+                                                    <div class="cover-lines">
+                                                        <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="album-text">
+                                                <h3 class="heading-post"><%= public_alb[i].title %></h3>
+                                                <div class="album-info">
+                                                    <h4>34 pics</h4>
+                                                    <h4>17/08/2024</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } %>
+
+                                <% } %>
+
+                            <% } %>
+                            
+                        </section>
+                        <section class="coulmn4 column">
+
+                            <% if(public_alb.length >= 4) { %>
+
+                                <% if(public_alb.length <= 7) { %>
+
+                                    <div class="container-album-card" id="<%= public_alb[3]._id %>">
+                                        <a href="/details">
+                                            <div class="album1-1 album">
+                                                <div class="cover-lines">
+                                                    <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="album-text">
+                                            <h3 class="heading-post"><%= public_alb[3].title %></h3>
+                                            <div class="album-info">
+                                                <h4>34 pics</h4>
+                                                <h4>17/08/2024</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <% } else { %>
+
+                                    <% for(let i=3; i<public_alb.length; i+=4){ %>
+
+                                        <div class="container-album-card" id="<%= public_alb[i]._id %>">
+                                            <a href="/details">
+                                                <div class="album1-1 album">
+                                                    <div class="cover-lines">
+                                                        <img class="image1-1 image" src="pic_icon.png" alt="album">
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="album-text">
+                                                <h3 class="heading-post"><%= public_alb[i].title %></h3>
+                                                <div class="album-info">
+                                                    <h4>34 pics</h4>
+                                                    <h4>17/08/2024</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } %>
+
+                                <% } %>
+
+                            <% } %>
+                            
+                        </section>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous"></script>
+    <script src="modal-friends.js"></script>
+    <script src="sections_slider.js"></script>
+    <script src="get_album_id.js"></script>
+
+    
+</body>
+</html>
